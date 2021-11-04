@@ -49,11 +49,11 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-KERNEL_TOOLCHAIN := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-x14/bin
+KERNEL_TOOLCHAIN := $(shell pwd)/prebuilts/clang/host/linux-x86/proton-clang/bin
 TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc OEM_TARGET_PRODUCT=$(PRODUCT_DEVICE)
 TARGET_KERNEL_SOURCE := kernel/oneplus/sm8250
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := x14
+
 TARGET_KERNEL_CONFIG := neutrino_llvm_defconfig
 #TARGET_KERNEL_ADDITIONAL_CONFIG := neutrino_kebab_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-gnu-
@@ -64,6 +64,7 @@ TARGET_BOARD_PLATFORM := kona
 
 # Properties
 TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
+TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
@@ -106,6 +107,7 @@ USE_CUSTOM_AUDIO_POLICY := 1
 TARGET_USE_QTI_BT_STACK := true
 
 # Camera
+TARGET_CAMERA_NEEDS_CLIENT_INFO := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 

@@ -1,3 +1,5 @@
+WITH_GAPPS=true
+
 #
 # Copyright (C) 2018 The LineageOS Project
 #
@@ -22,6 +24,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/oneplus/sm8250-common/sm8250-common-vendor.mk)
+
+#GAPPS INCLUDE
+$(call inherit-product, vendor/gms/Android.mk)
+
+# Inherit packages from vendor/oneplus/addons/camera
+$(call inherit-product, vendor/oneplus/addons/camera/camera-vendor.mk)
 
 # Additional native libraries
 PRODUCT_COPY_FILES += \
@@ -185,7 +193,7 @@ PRODUCT_PACKAGES_DEBUG += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
-    Snap \
+    libcamera2ndk_vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
 # Common init scripts
@@ -200,6 +208,7 @@ PRODUCT_PACKAGES += \
     init.oem.rc \
     init.oem.sec.rc \
     init.oem_ftm.rc \
+	init.oneplus.camera.rc \
     init.oplus_chg.sh \
     init.qcom.class_core.sh \
     init.qcom.coex.sh \
@@ -299,7 +308,10 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    libhwbinder.vendor
+     libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+	libhwbinder.vendor
 
 # HotwordEnrollement app permissions
 PRODUCT_COPY_FILES += \
